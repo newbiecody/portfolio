@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 0.875rem;
+}
+
+.dark-mode {
+  button {
+    border-color: #f2eee2;
+  }
+}
+
+[class^="p-container-"],
+[class^="px-container-"],
+[class^="py-container-"] {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+@media only screen and (min-width: 769px) {
+  [class^="padded-container-"] {
+    flex-direction: row; /* Change to row when screen width is 769px or larger */
+  }
+}
+.p-container-1,
+.px-container-1 {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.py-container-1,
+.p-container-1 {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.p-container-2,
+.px-container-2 {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.py-container-2,
+.p-container-2 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.p-container-3 {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
