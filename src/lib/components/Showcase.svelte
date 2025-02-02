@@ -4,7 +4,7 @@
   const showcaseDetails = [
     {
       name: "Weather Application (MVP)",
-      desc: "A quick MVP done in 2 days.",
+      desc: "A quick MVP done in 2 days. - written in React",
       // previewImageSrc: "/images/weather-app.gif",
       previewImageSrc: "https://github.com/newbiecody/portfolio/blob/main/static/images/weather-app.gif?raw=true",
       url: "https://github.com/newbiecody/weather-app",
@@ -12,7 +12,7 @@
     },
     {
       name: "hello again",
-      desc: "An online shop selling photo frames.",
+      desc: "An online shop selling photo frames - written (WIP) in Next.js",
       // previewImageSrc: "/images/hello-again.gif",
       previewImageSrc: "https://raw.githubusercontent.com/newbiecody/portfolio/refs/heads/main/static/images/hello-again.gif",
       url: "https://github.com/newbiecody/Hello-Again-React/tree/main",
