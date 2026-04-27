@@ -1,5 +1,6 @@
 <script>
   import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+  import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
   import { isDarkMode } from "../../state.svelte";
   const socials = [
@@ -12,6 +13,11 @@
       name: "GitHub",
       url: "https://github.com/newbiecody",
       icon: faGithub,
+    },
+    {
+      name: "Email",
+      url: "mailto:dansonkang@gmail.com",
+      icon: faEnvelope,
     },
   ];
 </script>
