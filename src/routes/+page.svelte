@@ -24,7 +24,7 @@
     {/if}
   </div>
   <div class="flex justify-center">
-    <div class="flex flex-col space-y-8 w-[36rem]">
+    <div class="flex flex-col space-y-12 w-[36rem]">
       <div class="relative">
         <PretextHero name="Danson" subtitle="Software Engineer" />
         <SocialsBar />
