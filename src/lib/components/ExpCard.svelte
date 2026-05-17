@@ -14,11 +14,9 @@
   }: IExperience = $props();
 </script>
 
-<div class="exp-card padded-container-3 space-y-1">
+<div class="exp-card">
   {#if !!startDate}
-    <div
-      class="font-mono text-xs text-nowrap w-48 md:relative md:top-[2px] opacity-50 uppercase tracking-wider"
-    >
+    <div class="dates font-mono">
       <span>{startDate}</span>
       {#if !!endDate}
         <span>— {endDate}</span>
@@ -28,14 +26,14 @@
     </div>
   {/if}
 
-  <div class="md:w-128">
+  <div class="body">
     {#if !!title}
       <div class="text-sm">
         <span class="font-semibold">{title}</span>
         <span class="opacity-60">— {company}, {location}</span>
       </div>
     {/if}
-    <div class="opacity-70">{roleDesc}</div>
+    <div class="opacity-70 mt-1">{roleDesc}</div>
     {#if achievements && achievements.length > 0}
       <ul class="list-disc pl-5 mt-2 space-y-1 opacity-70 text-sm">
         {#each achievements as achievement}
@@ -53,13 +51,24 @@
 
 <style>
   .exp-card {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    margin: 0 -12px;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.2s ease;
+  }
+  .exp-card:last-child {
+    border-bottom: none;
   }
   .exp-card:hover {
     background-color: var(--card-hover);
-    border-color: var(--border);
+  }
+  .dates {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 0.35rem;
+  }
+  .body {
+    width: 100%;
   }
 </style>

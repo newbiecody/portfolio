@@ -36,14 +36,18 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 0.9rem;
     text-decoration: none;
     color: inherit;
-    opacity: 0.7;
+    opacity: 0.75;
     transition: opacity 0.2s ease, color 0.2s ease;
+  }
+  .social span {
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+  .social:hover span {
+    border-color: currentColor;
   }
   .social:hover {
     opacity: 1;
