@@ -16,7 +16,7 @@
 
 <button
   class:dark-mode={$isDarkMode}
-  class="rounded-xl px-4 py-1 border-2 border-solid border-[#1d3040] hover:opacity-70 h-fit"
+  class="theme-btn rounded-xl px-4 py-1 h-fit"
   type="button"
   onclick={buttonAction}
 >
@@ -27,3 +27,17 @@
     {buttonText}
   {/if}
 </button>
+
+<style>
+  .theme-btn {
+    border: 1px solid var(--border);
+    background: transparent;
+    color: inherit;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  }
+  .theme-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background-color: var(--accent-soft);
+  }
+</style>

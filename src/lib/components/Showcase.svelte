@@ -32,19 +32,70 @@
 
 <div>
   {#each showcaseDetails as { name, desc, stack, previewImageSrc, url, alt } (name)}
-    <div class="py-container-2 mb-6">
-      <div class="hover:underline">
-        <a href={url} target="_blank" rel="noopener noreferrer"
-          >{name} <span><FontAwesomeIcon icon={faLink} /></span></a
-        >
-      </div>
-      <div class="italic opacity-50 text-xs mt-1">{stack}</div>
-      <div class="opacity-70 text-sm mt-2">{desc}</div>
+    <div class="showcase-item py-container-2 mb-6">
+      <a class="title" href={url} target="_blank" rel="noopener noreferrer">
+        <span>{name}</span>
+        <FontAwesomeIcon icon={faLink} class="link-icon" />
+      </a>
+      <div class="stack">{stack}</div>
+      <div class="opacity-70 text-sm mt-2 leading-relaxed">{desc}</div>
       {#if previewImageSrc}
-        <div class="mt-3">
-          <img src={previewImageSrc} alt={alt ?? name} class="rounded-xl" />
+        <div class="preview mt-3">
+          <img src={previewImageSrc} alt={alt ?? name} />
         </div>
       {/if}
     </div>
   {/each}
 </div>
+
+<style>
+  .showcase-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .showcase-item:last-child {
+    border-bottom: none;
+  }
+  .title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+  .title :global(.link-icon) {
+    font-size: 0.75em;
+    opacity: 0.5;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .title:hover {
+    color: var(--accent);
+  }
+  .title:hover :global(.link-icon) {
+    opacity: 1;
+    transform: translate(2px, -2px);
+  }
+  .stack {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    opacity: 0.55;
+    margin-top: 0.35rem;
+    text-transform: uppercase;
+  }
+  .preview {
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .preview img {
+    display: block;
+    width: 100%;
+    transition: transform 0.4s ease;
+  }
+  .preview:hover img {
+    transform: scale(1.02);
+  }
+</style>

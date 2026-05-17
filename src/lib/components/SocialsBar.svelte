@@ -22,15 +22,31 @@
   ];
 </script>
 
-<div class="flex space-x-4">
+<div class="socials-bar flex flex-wrap gap-x-5 gap-y-2 mt-2">
   {#each socials as { name, url, icon } (name)}
-    <a href={url} target="_blank" rel="noopener noreferrer">
-      <span class=" hover:underline tracking-[0.1em]">{name}</span>
-      {#if $isDarkMode}
-        <FontAwesomeIcon {icon} style="color: #f2eee2;" />
-      {:else}
-        <FontAwesomeIcon {icon} style="color: #1d3040;" />
-      {/if}
+    <a class="social" href={url} target="_blank" rel="noopener noreferrer">
+      <FontAwesomeIcon {icon} />
+      <span>{name}</span>
     </a>
   {/each}
 </div>
+
+<style>
+  .social {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+  .social:hover {
+    opacity: 1;
+    color: var(--accent);
+  }
+</style>

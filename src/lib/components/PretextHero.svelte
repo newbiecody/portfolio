@@ -142,18 +142,22 @@
   }
 
   .name {
-    font-size: clamp(3rem, 8vw, 5rem);
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 5.5rem);
     font-weight: 700;
+    font-variation-settings: "opsz" 144;
     line-height: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     margin: 0;
-    text-transform: uppercase;
   }
 
   .subtitle {
-    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    font-family: var(--font-mono);
+    font-size: clamp(0.85rem, 1.4vw, 0.95rem);
     margin: 0.75rem 0 0;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.7;
   }
 
   .name span,

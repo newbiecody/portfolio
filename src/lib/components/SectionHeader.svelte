@@ -89,11 +89,16 @@
 
 <style>
   .section-header {
-    font-size: 1.125rem;
-    font-weight: 800;
-    letter-spacing: -0.01em;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     line-height: 1.2;
-    margin: 0 0 0.5rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--accent);
   }
 
   .section-header span {
