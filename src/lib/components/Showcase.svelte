@@ -13,6 +13,15 @@
 
   const showcaseDetails: ShowcaseItem[] = [
     {
+      name: "Flatlas — Singapore HDB Resale Map",
+      desc: "An interactive analytics map of every Singapore HDB resale transaction since 1990. A three-tier zoom blends town choropleth → individual block dots → 3D blocks, with a real/nominal (inflation-adjusted) price toggle and a per-block hedonic model that explains why each block is priced the way it is. Live at flatlas.sg.",
+      stack: "Go · PostGIS · Martin vector tiles · React · MapLibre GL · Docker",
+      url: "https://flatlas.sg",
+      previewImageSrc:
+        "https://raw.githubusercontent.com/newbiecody/portfolio/refs/heads/main/static/images/flatlas.png",
+      alt: "Flatlas Singapore HDB resale price map",
+    },
+    {
       name: "Audio Transcriber",
       desc: "A web app that transcribes uploaded audio files using OpenAI's whisper-tiny model. Async processing via Redis queues and Docker containers keeps the UI responsive while transcription runs in the background — the kind of architecture you'd reach for if this were a real product.",
       stack: "React · FastAPI · Redis · Docker · Whisper",
