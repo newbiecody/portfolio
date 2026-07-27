@@ -25,18 +25,18 @@
       alt: "Flatlas Singapore HDB resale price map",
     },
     {
-      name: "Audio Transcriber",
-      desc: "A web app that transcribes uploaded audio files using OpenAI's whisper-tiny model. Async processing via Redis queues and Docker containers keeps the UI responsive while transcription runs in the background — the kind of architecture you'd reach for if this were a real product.",
-      stack: "React · FastAPI · Redis · Docker · Whisper",
-      url: "https://github.com/newbiecody/transcriber-app",
-    },
-    {
       name: "Hello Again — Merchant Portal",
       desc: "A merchant portal for managing inventory, employees, and business analytics. Built as an excuse to go end-to-end on a stack I don't use at work — frontend in Vue 3, backend in Spring Boot with JWT auth, admin dashboard layered on top.",
       stack: "Vue 3 · Spring Boot · JWT · PostgreSQL",
       url: "https://github.com/newbiecody/Hello-Again-React",
       previewVideoSrc: `${base}/images/hello-again.mp4`,
       alt: "Hello Again merchant portal",
+    },
+    {
+      name: "Audio Transcriber",
+      desc: "A web app that transcribes uploaded audio files using OpenAI's whisper-tiny model. Async processing via Redis queues and Docker containers keeps the UI responsive while transcription runs in the background — the kind of architecture you'd reach for if this were a real product.",
+      stack: "React · FastAPI · Redis · Docker · Whisper",
+      url: "https://github.com/newbiecody/transcriber-app",
     },
   ];
 </script>
