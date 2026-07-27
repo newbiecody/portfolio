@@ -22,7 +22,30 @@
     { id: "showcase", label: "Showcase" },
     { id: "contact", label: "Contact" },
   ];
+
+  const siteUrl = "https://newbiecody.github.io/portfolio";
+  const title = "Danson Kang — Software Engineer";
+  const description =
+    "Full-stack engineer in Singapore. Builder of Flatlas (flatlas.sg), an interactive map of every HDB resale transaction since 1990. TypeScript, Go, PostgreSQL, PostGIS.";
 </script>
+
+<svelte:head>
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href="{siteUrl}/" />
+  <meta name="theme-color" content="#1a1a1a" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content="{siteUrl}/" />
+  <meta property="og:image" content="{siteUrl}/images/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="{siteUrl}/images/og.png" />
+</svelte:head>
 
 <SideNav items={navItems} />
 
