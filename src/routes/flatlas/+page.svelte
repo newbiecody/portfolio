@@ -286,7 +286,13 @@
     opacity: 0.55;
     margin-top: 0.25rem;
   }
+  /* Break out of the 36rem article column — at column width the map site
+     falls back to its stacked mobile layout and is unusable. */
   .embed {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(94vw, 78rem);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
@@ -294,7 +300,7 @@
   .embed iframe {
     display: block;
     width: 100%;
-    height: 30rem;
+    height: clamp(30rem, 78vh, 46rem);
     border: 0;
   }
   .embed-poster {
