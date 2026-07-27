@@ -11,6 +11,7 @@
     previewImageSrc?: string;
     previewVideoSrc?: string;
     alt?: string;
+    caseStudyHref?: string;
   }
 
   const showcaseDetails: ShowcaseItem[] = [
@@ -19,6 +20,7 @@
       desc: "An interactive analytics map of every Singapore HDB resale transaction since 1990 — roughly a million sales across ten thousand blocks. A three-tier zoom blends town choropleth → block dots → 3D buildings extruded from their real footprints; a time slider replays 35 years of prices in real (CPI-adjusted) or nominal dollars. A hedonic pricing model (test R² 0.94) explains why each flat is priced the way it is, and the map flips between resale and rental markets. Live at flatlas.sg.",
       stack: "Go · PostGIS · Martin vector tiles · React · MapLibre GL · DuckDB · Docker",
       url: "https://flatlas.sg",
+      caseStudyHref: `${base}/flatlas`,
       previewVideoSrc: `${base}/images/flatlas.mp4`,
       alt: "Flatlas Singapore HDB resale price map",
     },
@@ -40,14 +42,19 @@
 </script>
 
 <div>
-  {#each showcaseDetails as { name, desc, stack, previewImageSrc, previewVideoSrc, url, alt } (name)}
+  {#each showcaseDetails as { name, desc, stack, previewImageSrc, previewVideoSrc, url, alt, caseStudyHref } (name)}
     <div class="showcase-item py-container-2 mb-6">
       <a class="title" href={url} target="_blank" rel="noopener noreferrer">
         <span>{name}</span>
         <FontAwesomeIcon icon={faLink} class="link-icon" />
       </a>
       <div class="stack">{stack}</div>
-      <div class="opacity-70 text-sm mt-2 leading-relaxed">{desc}</div>
+      <div class="opacity-70 text-sm mt-2 leading-relaxed">
+        {desc}
+        {#if caseStudyHref}
+          <a class="case-study" href={caseStudyHref}>Read the case study →</a>
+        {/if}
+      </div>
       {#if previewVideoSrc}
         <div class="preview mt-3">
           <video src={previewVideoSrc} autoplay loop muted playsinline aria-label={alt ?? name}></video>
@@ -89,6 +96,14 @@
   .title:hover :global(.link-icon) {
     opacity: 1;
     transform: translate(2px, -2px);
+  }
+  .case-study {
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .case-study:hover {
+    text-decoration: underline;
   }
   .stack {
     font-family: var(--font-mono);
