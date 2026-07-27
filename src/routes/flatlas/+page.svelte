@@ -7,6 +7,8 @@
   const description =
     "How Flatlas maps every Singapore HDB resale transaction since 1990: PostGIS vector tiles, a Go API, a hedonic pricing model, and the engineering problems in between.";
 
+  let embedLoaded = $state(false);
+
   const stats = [
     { value: "~1M", label: "resale transactions" },
     { value: "~10k", label: "blocks geocoded" },
@@ -64,6 +66,32 @@
           in inflation-adjusted or nominal dollars, and a pricing model that
           explains <em>why</em> a given block costs what it does.
         </p>
+      </div>
+    </section>
+
+    <section>
+      <SectionHeader text="Try it" level={2} />
+      <div class="embed">
+        {#if embedLoaded}
+          <iframe
+            src="https://flatlas.sg"
+            title="Flatlas — live map"
+            loading="lazy"
+            allow="fullscreen"
+          ></iframe>
+        {:else}
+          <button class="embed-poster" onclick={() => (embedLoaded = true)}>
+            <video
+              src="{base}/images/flatlas.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              aria-hidden="true"
+            ></video>
+            <span class="embed-cta">▶ Load the live map</span>
+          </button>
+        {/if}
       </div>
     </section>
 
@@ -257,6 +285,47 @@
     text-transform: uppercase;
     opacity: 0.55;
     margin-top: 0.25rem;
+  }
+  .embed {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .embed iframe {
+    display: block;
+    width: 100%;
+    height: 30rem;
+    border: 0;
+  }
+  .embed-poster {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+  .embed-poster video {
+    display: block;
+    width: 100%;
+  }
+  .embed-cta {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(18, 18, 18, 0.35);
+    transition: background 0.2s ease;
+  }
+  .embed-poster:hover .embed-cta {
+    background: rgba(18, 18, 18, 0.5);
   }
   .prose {
     opacity: 0.75;
