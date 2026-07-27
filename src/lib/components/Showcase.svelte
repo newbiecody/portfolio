@@ -1,6 +1,7 @@
 <script lang="ts">
   import { faLink } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
+  import { base } from "$app/paths";
 
   interface ShowcaseItem {
     name: string;
@@ -8,6 +9,7 @@
     stack: string;
     url: string;
     previewImageSrc?: string;
+    previewVideoSrc?: string;
     alt?: string;
   }
 
@@ -17,8 +19,7 @@
       desc: "An interactive analytics map of every Singapore HDB resale transaction since 1990 — roughly a million sales across ten thousand blocks. A three-tier zoom blends town choropleth → block dots → 3D buildings extruded from their real footprints; a time slider replays 35 years of prices in real (CPI-adjusted) or nominal dollars. A hedonic pricing model (test R² 0.94) explains why each flat is priced the way it is, and the map flips between resale and rental markets. Live at flatlas.sg.",
       stack: "Go · PostGIS · Martin vector tiles · React · MapLibre GL · DuckDB · Docker",
       url: "https://flatlas.sg",
-      previewImageSrc:
-        "https://raw.githubusercontent.com/newbiecody/portfolio/refs/heads/main/static/images/flatlas.gif",
+      previewVideoSrc: `${base}/images/flatlas.mp4`,
       alt: "Flatlas Singapore HDB resale price map",
     },
     {
@@ -32,15 +33,14 @@
       desc: "A merchant portal for managing inventory, employees, and business analytics. Built as an excuse to go end-to-end on a stack I don't use at work — frontend in Vue 3, backend in Spring Boot with JWT auth, admin dashboard layered on top.",
       stack: "Vue 3 · Spring Boot · JWT · PostgreSQL",
       url: "https://github.com/newbiecody/Hello-Again-React",
-      previewImageSrc:
-        "https://raw.githubusercontent.com/newbiecody/portfolio/refs/heads/main/static/images/hello-again.gif",
+      previewVideoSrc: `${base}/images/hello-again.mp4`,
       alt: "Hello Again merchant portal",
     },
   ];
 </script>
 
 <div>
-  {#each showcaseDetails as { name, desc, stack, previewImageSrc, url, alt } (name)}
+  {#each showcaseDetails as { name, desc, stack, previewImageSrc, previewVideoSrc, url, alt } (name)}
     <div class="showcase-item py-container-2 mb-6">
       <a class="title" href={url} target="_blank" rel="noopener noreferrer">
         <span>{name}</span>
@@ -48,7 +48,11 @@
       </a>
       <div class="stack">{stack}</div>
       <div class="opacity-70 text-sm mt-2 leading-relaxed">{desc}</div>
-      {#if previewImageSrc}
+      {#if previewVideoSrc}
+        <div class="preview mt-3">
+          <video src={previewVideoSrc} autoplay loop muted playsinline aria-label={alt ?? name}></video>
+        </div>
+      {:else if previewImageSrc}
         <div class="preview mt-3">
           <img src={previewImageSrc} alt={alt ?? name} />
         </div>
@@ -99,12 +103,14 @@
     border-radius: 12px;
     border: 1px solid var(--border);
   }
-  .preview img {
+  .preview img,
+  .preview video {
     display: block;
     width: 100%;
     transition: transform 0.4s ease;
   }
-  .preview:hover img {
+  .preview:hover img,
+  .preview:hover video {
     transform: scale(1.02);
   }
 </style>
