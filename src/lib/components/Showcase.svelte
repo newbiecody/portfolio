@@ -14,11 +14,11 @@
   const showcaseDetails: ShowcaseItem[] = [
     {
       name: "Flatlas — Singapore HDB Resale Map",
-      desc: "An interactive analytics map of every Singapore HDB resale transaction since 1990. A three-tier zoom blends town choropleth → individual block dots → 3D blocks, with a real/nominal (inflation-adjusted) price toggle and a per-block hedonic model that explains why each block is priced the way it is. Live at flatlas.sg.",
-      stack: "Go · PostGIS · Martin vector tiles · React · MapLibre GL · Docker",
+      desc: "An interactive analytics map of every Singapore HDB resale transaction since 1990 — roughly a million sales across ten thousand blocks. A three-tier zoom blends town choropleth → block dots → 3D buildings extruded from their real footprints; a time slider replays 35 years of prices in real (CPI-adjusted) or nominal dollars. A hedonic pricing model (test R² 0.94) explains why each flat is priced the way it is, and the map flips between resale and rental markets. Live at flatlas.sg.",
+      stack: "Go · PostGIS · Martin vector tiles · React · MapLibre GL · DuckDB · Docker",
       url: "https://flatlas.sg",
       previewImageSrc:
-        "https://raw.githubusercontent.com/newbiecody/portfolio/refs/heads/main/static/images/flatlas.png",
+        "https://raw.githubusercontent.com/newbiecody/portfolio/refs/heads/main/static/images/flatlas.gif",
       alt: "Flatlas Singapore HDB resale price map",
     },
     {
