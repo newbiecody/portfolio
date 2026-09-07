@@ -101,10 +101,4 @@
   </div>
 </div>
 
-<style>
-  :global(body) {
-    background-color: var(--bg);
-    color: var(--fg);
-    transition: background-color 0.3s, color 0.3s;
-  }
-</style>
+

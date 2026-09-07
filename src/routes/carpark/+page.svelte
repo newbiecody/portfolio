@@ -53,7 +53,7 @@
     </div>
 
     <section>
-      <SectionHeader text="The problem with the live number" level={2} />
+      <SectionHeader text="Why the live number lies" level={2} />
       <div class="prose">
         <p>
           Singapore publishes carpark availability as open data, and several
@@ -110,7 +110,7 @@
 
     <section>
       <SectionHeader
-        text="Problem 1 — a wrong yes costs twenty minutes"
+        text="Problem 1 — wrong yes, wrong no"
         level={2}
       />
       <div class="prose">
@@ -145,7 +145,7 @@
 
     <section>
       <SectionHeader
-        text="Problem 2 — some carparks should not be predicted at all"
+        text="Problem 2 — when not to answer"
         level={2}
       />
       <div class="prose">
@@ -178,7 +178,7 @@
 
     <section>
       <SectionHeader
-        text="Problem 3 — the flow was losing people, not the model"
+        text="Problem 3 — the flow, not the model"
         level={2}
       />
       <div class="prose">

@@ -83,7 +83,7 @@
       bind:this={refs[i]}
       aria-hidden="true"
       style:opacity={prefersReducedMotion ? 1 : 0}
-    >{char === ' ' ? ' ' : char}</span>
+    >{char === ' ' ? '\u00a0' : char}</span>
   {/each}
 </svelte:element>
 
