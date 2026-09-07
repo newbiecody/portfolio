@@ -25,6 +25,13 @@
       alt: "Flatlas Singapore HDB resale price map",
     },
     {
+      name: "Parking Arrival Prediction — Singapore",
+      desc: "Every parking app here shows the lots free right now, which is fiction after a 30-minute drive. This one logs every public carpark feed in Singapore every five minutes and predicts whether a lot will still be there when you arrive, served as a Telegram bot. Each carpark is backtested walk-forward and has to clear an accuracy bar before it is allowed to answer — the ones that can't say \"not enough signal\" instead of guessing.",
+      stack: "TypeScript · Node · Postgres · grammY · Docker · GitHub Actions",
+      url: `${base}/carpark`,
+      caseStudyHref: `${base}/carpark`,
+    },
+    {
       name: "Hello Again — Merchant Portal",
       desc: "A merchant portal for managing inventory, employees, and business analytics. Built as an excuse to go end-to-end on a stack I don't use at work — frontend in Vue 3, backend in Spring Boot with JWT auth, admin dashboard layered on top.",
       stack: "Vue 3 · Spring Boot · JWT · PostgreSQL",
