@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import type { IExperience } from "../../constants";
   import Badge from "./Badge.svelte";
 
@@ -37,7 +38,14 @@
     {#if achievements && achievements.length > 0}
       <ul class="list-disc pl-5 mt-2 space-y-1 opacity-70 text-sm">
         {#each achievements as achievement}
-          <li>{achievement}</li>
+          {#if typeof achievement === "string"}
+            <li>{achievement}</li>
+          {:else}
+            <li>
+              {achievement.text}
+              <a class="note-link" href="{base}{achievement.href}">Read the note →</a>
+            </li>
+          {/if}
         {/each}
       </ul>
     {/if}
@@ -70,5 +78,13 @@
   }
   .body {
     width: 100%;
+  }
+  .note-link {
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .note-link:hover {
+    text-decoration: underline;
   }
 </style>

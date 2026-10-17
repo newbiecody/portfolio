@@ -5,7 +5,7 @@ export interface IExperience {
   roleDesc: string;
   startDate: string;
   endDate?: string;
-  achievements?: string[];
+  achievements?: (string | { text: string; href: string })[];
   skills: string[];
 }
 export type TExperiences = IExperience[];
@@ -28,7 +28,10 @@ export const experiences: TExperiences = [
     roleDesc:
       "Built and scaled backend services and customer-operations tooling for a card-issuing business.",
     achievements: [
-      "Cut high-traffic API response times from 1–2 minutes to under 1 second through query refactoring, indexing, and caching.",
+      {
+        text: "Cut high-traffic API response times from 1–2 minutes to under 1 second by restructuring queries with CTEs to narrow data before joins.",
+        href: "/crm-query",
+      },
       "Automated card add-ons, fee waivers, and similar workflows, reducing manual agent intervention by ~80%.",
       "Built a JWT + Lark OAuth sidebar app embedded in Zendesk, letting agents process customer requests (card closure, address updates) without leaving the ticket.",
       "Stood up Grafana and Prometheus dashboards for backend services, surfacing performance regressions and scaling bottlenecks before they hit customers.",
