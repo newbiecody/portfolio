@@ -3,6 +3,7 @@
   import SectionHeader from "$lib/components/SectionHeader.svelte";
 
   const siteUrl = "https://dansonkang.com";
+  const botUrl = "https://t.me/sgcarparkpredict_bot";
   const title = "Predicting parking — a case study";
   const description =
     "A Singapore parking predictor that answers whether you'll get a lot when you arrive, and refuses to answer for carparks it can't predict accurately: profile models, walk-forward calibration, and a Telegram bot.";
@@ -39,7 +40,10 @@
         <em>now</em>. After a thirty-minute drive that number is fiction. This
         one predicts whether a lot will be there when you
         <em>arrive</em> — and stays quiet about the carparks it can't predict
-        well enough to be worth trusting.
+        well enough to be worth trusting. Live on Telegram as
+        <a href={botUrl} target="_blank" rel="noopener noreferrer"
+          >@sgcarparkpredict_bot</a
+        >.
       </p>
     </header>
 
@@ -51,6 +55,20 @@
         </div>
       {/each}
     </div>
+
+    <section>
+      <SectionHeader text="Try it" level={2} />
+      <div class="prose">
+        <p>
+          The bot is live. Send it a place name or drop a location pin, and it
+          answers with the carparks nearby and whether each one is likely to
+          have a lot when you get there.
+        </p>
+      </div>
+      <a class="bot-cta" href={botUrl} target="_blank" rel="noopener noreferrer"
+        >Open @sgcarparkpredict_bot in Telegram →</a
+      >
+    </section>
 
     <section>
       <SectionHeader text="Why the live number lies" level={2} />
@@ -333,6 +351,11 @@
           TypeScript · Node · Postgres · grammY · Docker · GitHub Actions ·
           LTA DataMall · data.gov.sg · OneMap
         </p>
+        <p>
+          <a href={botUrl} target="_blank" rel="noopener noreferrer"
+            >Open the bot in Telegram →</a
+          >
+        </p>
       </div>
     </section>
   </article>
@@ -362,6 +385,31 @@
     margin-top: 0.75rem;
     opacity: 0.7;
     line-height: 1.6;
+  }
+  .subtitle a,
+  .prose a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .subtitle a:hover,
+  .prose a:hover {
+    text-decoration: underline;
+  }
+  .bot-cta {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  .bot-cta:hover {
+    background: var(--accent-soft);
   }
   .stats {
     display: grid;
