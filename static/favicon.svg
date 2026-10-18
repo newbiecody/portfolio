@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .tile { fill: #f2eee2; stroke: rgba(18, 18, 18, 0.14); }
+    .ink { stroke: #121212; }
+    .accent { fill: #c2410c; }
+    @media (prefers-color-scheme: dark) {
+      .tile { fill: #1a1612; stroke: rgba(242, 238, 226, 0.14); }
+      .ink { stroke: #f2eee2; }
+      .accent { fill: #fbbf24; }
+    }
+  </style>
+  <rect class="tile" x="0.75" y="0.75" width="30.5" height="30.5" rx="6.5" stroke-width="1.5"/>
+  <g class="ink" fill="none" stroke-width="3" stroke-linejoin="round">
+    <path d="M5.5 7v14H8a6 7 0 0 0 0-14z"/>
+    <path d="M19.5 5.5v17M19.5 15 26 6M21.8 12.3 26.5 22.5"/>
+  </g>
+  <rect class="accent" x="4" y="25" width="24" height="2.5" rx="1.25"/>
+</svg>
