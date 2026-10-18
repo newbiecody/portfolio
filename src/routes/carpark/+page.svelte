@@ -2,7 +2,7 @@
   import { base } from "$app/paths";
   import SectionHeader from "$lib/components/SectionHeader.svelte";
 
-  const siteUrl = "https://newbiecody.github.io/portfolio";
+  const siteUrl = "https://dansonkang.com";
   const title = "Predicting parking — a case study";
   const description =
     "A Singapore parking predictor that answers whether you'll get a lot when you arrive, and refuses to answer for carparks it can't predict accurately: profile models, walk-forward calibration, and a Telegram bot.";
@@ -29,8 +29,8 @@
   <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
-<div class="flex justify-center w-full p-4">
-  <article class="flex flex-col w-[36rem] max-w-full space-y-12 py-10">
+<div class="page">
+  <article class="page-col">
     <header>
       <a class="backlink" href="{base}/">← danson kang</a>
       <h1>Predicting parking</h1>
@@ -80,21 +80,114 @@
           runs on a schedule, and the bot only ever reads.
         </p>
       </div>
-      <pre class="diagram">{`   LTA DataMall ─┐
-   data.gov.sg  ─┼─► ingest (cron, 5 min) ─► Postgres
-   NEA rainfall ─┘                             │
-                                               │
-                     nightly / monthly         │
-                   calibration sweep ◄─────────┤
-                   (walk-forward backtest)     │
-                          │                    │
-                   per-carpark config          │
-                   model + yes-floor + gate    │
-                          │                    │
-                          ▼                    ▼
-                       serving ──────────► Telegram bot
-                   predict(carpark,          cards · watches
-                           arrival)          feedback loop`}</pre>
+      <figure
+        class="arch"
+        role="img"
+        aria-label="LTA DataMall, data.gov.sg and NEA rainfall feeds are ingested every five minutes into Postgres. A nightly and monthly calibration sweep backtests each carpark walk-forward and writes a per-carpark config: model, yes-floor and gate. Serving uses that config to predict availability at arrival for the Telegram bot, which also reads live counts from Postgres."
+      >
+        <svg class="arch-h" viewBox="0 0 960 340" aria-hidden="true">
+          <defs>
+            <marker id="park-arrow-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path class="arrowhead" d="M0 0 10 5 0 10z" />
+            </marker>
+          </defs>
+          <path class="edge" d="M200 90 H233" marker-end="url(#park-arrow-h)" />
+          <path class="edge" d="M400 90 H438" marker-end="url(#park-arrow-h)" />
+          <path class="edge" d="M630 90 H738" marker-end="url(#park-arrow-h)" />
+          <path class="edge" d="M535 135 V208" marker-end="url(#park-arrow-h)" />
+          <path class="edge" d="M630 265 H738" marker-end="url(#park-arrow-h)" />
+          <path class="edge" d="M840 210 V137" marker-end="url(#park-arrow-h)" />
+          <text class="edge-label" x="684" y="80" text-anchor="middle">live counts</text>
+          <text class="edge-label" x="545" y="177">history</text>
+          <text class="edge-label" x="684" y="255" text-anchor="middle">config</text>
+          <text class="edge-label" x="830" y="177" text-anchor="end">predict(carpark, arrival)</text>
+
+          <rect class="node" x="20" y="20" width="180" height="140" rx="12" />
+          <text class="tag" x="40" y="46">Open data</text>
+          <text class="title" x="40" y="72">Sources</text>
+          <text class="sub" x="40" y="98">LTA DataMall</text>
+          <text class="sub" x="40" y="118">data.gov.sg</text>
+          <text class="sub" x="40" y="138">NEA rainfall</text>
+
+          <rect class="node" x="235" y="45" width="165" height="90" rx="12" />
+          <text class="tag" x="255" y="71">Logger</text>
+          <text class="title" x="255" y="97">Ingest</text>
+          <text class="sub" x="255" y="119">every 5 min</text>
+
+          <rect class="node node-source" x="440" y="45" width="190" height="90" rx="12" />
+          <text class="tag" x="460" y="71">One database</text>
+          <text class="title" x="460" y="97">Postgres</text>
+          <text class="sub" x="460" y="119">feeds + history</text>
+
+          <rect class="node" x="740" y="45" width="200" height="90" rx="12" />
+          <text class="tag" x="760" y="71">Read-only</text>
+          <text class="title" x="760" y="97">Telegram bot</text>
+          <text class="sub" x="760" y="119">cards · watches</text>
+
+          <rect class="node" x="440" y="210" width="190" height="110" rx="12" />
+          <text class="tag" x="460" y="236">Calibrator</text>
+          <text class="title" x="460" y="262">Calibration</text>
+          <text class="sub" x="460" y="286">nightly · monthly</text>
+          <text class="sub" x="460" y="306">walk-forward test</text>
+
+          <rect class="node" x="740" y="210" width="200" height="110" rx="12" />
+          <text class="tag" x="760" y="236">Per carpark</text>
+          <text class="title" x="760" y="262">Serving</text>
+          <text class="sub" x="760" y="286">model · yes-floor</text>
+          <text class="sub" x="760" y="306">accuracy gate</text>
+        </svg>
+
+        <svg class="arch-v" viewBox="0 0 360 756" aria-hidden="true">
+          <defs>
+            <marker id="park-arrow-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path class="arrowhead" d="M0 0 10 5 0 10z" />
+            </marker>
+          </defs>
+          <path class="edge" d="M170 130 V158" marker-end="url(#park-arrow-v)" />
+          <path class="edge" d="M170 246 V274" marker-end="url(#park-arrow-v)" />
+          <path class="edge" d="M170 362 V390" marker-end="url(#park-arrow-v)" />
+          <path class="edge" d="M170 496 V524" marker-end="url(#park-arrow-v)" />
+          <path class="edge" d="M170 630 V658" marker-end="url(#park-arrow-v)" />
+          <path class="edge" d="M320 319 H340 V703 H322" marker-end="url(#park-arrow-v)" />
+          <text class="edge-label" x="180" y="380">history</text>
+          <text class="edge-label" x="180" y="514">config</text>
+          <text class="edge-label" x="180" y="648">predict()</text>
+          <text class="edge-label" transform="translate(345 511) rotate(90)" text-anchor="middle">live counts</text>
+
+          <rect class="node" x="20" y="10" width="300" height="120" rx="12" />
+          <text class="tag" x="40" y="36">Open data</text>
+          <text class="title" x="40" y="62">Sources</text>
+          <text class="sub" x="40" y="88">LTA DataMall · data.gov.sg</text>
+          <text class="sub" x="40" y="108">NEA rainfall</text>
+
+          <rect class="node" x="20" y="160" width="300" height="86" rx="12" />
+          <text class="tag" x="40" y="184">Logger</text>
+          <text class="title" x="40" y="210">Ingest</text>
+          <text class="sub" x="40" y="232">every 5 min</text>
+
+          <rect class="node node-source" x="20" y="276" width="300" height="86" rx="12" />
+          <text class="tag" x="40" y="300">One database</text>
+          <text class="title" x="40" y="326">Postgres</text>
+          <text class="sub" x="40" y="348">feeds + history</text>
+
+          <rect class="node" x="20" y="392" width="300" height="104" rx="12" />
+          <text class="tag" x="40" y="416">Calibrator</text>
+          <text class="title" x="40" y="442">Calibration</text>
+          <text class="sub" x="40" y="466">nightly · monthly</text>
+          <text class="sub" x="40" y="486">walk-forward backtest</text>
+
+          <rect class="node" x="20" y="526" width="300" height="104" rx="12" />
+          <text class="tag" x="40" y="550">Per carpark</text>
+          <text class="title" x="40" y="576">Serving</text>
+          <text class="sub" x="40" y="600">model · yes-floor</text>
+          <text class="sub" x="40" y="620">accuracy gate</text>
+
+          <rect class="node" x="20" y="660" width="300" height="86" rx="12" />
+          <text class="tag" x="40" y="684">Read-only</text>
+          <text class="title" x="40" y="710">Telegram bot</text>
+          <text class="sub" x="40" y="732">cards · watches · feedback</text>
+        </svg>
+      </figure>
       <div class="prose">
         <p>
           The whole thing runs in Docker on one small VM, sharing a Postgres
@@ -309,24 +402,13 @@
     font-family: var(--font-mono);
     font-size: 0.85em;
   }
-  .diagram {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    line-height: 1.35;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1rem;
-    margin: 1rem 0;
-    overflow-x: auto;
-    opacity: 0.85;
-  }
   .stack-line {
     font-family: var(--font-mono);
     font-size: 0.75rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-  section :global(h2) {
+  section :global(.section-header) {
     margin-bottom: 0.75rem;
   }
 </style>

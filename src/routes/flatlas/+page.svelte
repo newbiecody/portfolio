@@ -2,7 +2,7 @@
   import { base } from "$app/paths";
   import SectionHeader from "$lib/components/SectionHeader.svelte";
 
-  const siteUrl = "https://newbiecody.github.io/portfolio";
+  const siteUrl = "https://dansonkang.com";
   const title = "Flatlas — a case study";
   const description =
     "How Flatlas maps every Singapore HDB resale transaction since 1990: PostGIS vector tiles, a Go API, a hedonic pricing model, and the engineering problems in between.";
@@ -31,8 +31,8 @@
   <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
-<div class="flex justify-center w-full p-4">
-  <article class="flex flex-col w-[36rem] max-w-full space-y-12 py-10">
+<div class="page">
+  <article class="page-col">
     <header>
       <a class="backlink" href="{base}/">← danson kang</a>
       <h1>Flatlas</h1>
@@ -104,24 +104,82 @@
           mix.
         </p>
       </div>
-      <pre class="diagram">{`            ┌─────────────────────────────┐
-            │   PostGIS  (source of truth) │
-            │   transactions · blocks ·    │
-            │   matviews · model coefs     │
-            └──────┬───────────────┬──────┘
-                   │               │
-        MVT tiles  │               │  SQL (bbox, windowed)
-                   ▼               ▼
-            ┌────────────┐   ┌────────────┐
-            │   Martin    │   │   Go API    │
-            │ tile server │   │ txn history │
-            └──────┬─────┘   └──────┬─────┘
-                   │  render         │  interact
-                   ▼                 ▼
-            ┌─────────────────────────────┐
-            │   React + MapLibre GL        │
-            │   3 zoom tiers · 1 price ramp│
-            └─────────────────────────────┘`}</pre>
+      <figure
+        class="arch"
+        role="img"
+        aria-label="PostGIS is the source of truth. It feeds Martin with vector tiles for rendering, and the Go API with bounding-box SQL queries for interaction. Both serve the React and MapLibre GL client."
+      >
+        <svg class="arch-h" viewBox="0 0 960 280" aria-hidden="true">
+          <defs>
+            <marker id="arch-arrow-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path class="arrowhead" d="M0 0 10 5 0 10z" />
+            </marker>
+          </defs>
+          <path class="edge" d="M250 105 C 320 105, 330 70, 392 70" marker-end="url(#arch-arrow-h)" />
+          <path class="edge" d="M250 175 C 320 175, 330 210, 392 210" marker-end="url(#arch-arrow-h)" />
+          <path class="edge" d="M610 70 C 670 70, 670 105, 722 105" marker-end="url(#arch-arrow-h)" />
+          <path class="edge" d="M610 210 C 670 210, 670 175, 722 175" marker-end="url(#arch-arrow-h)" />
+          <text class="edge-label" x="321" y="68" text-anchor="middle">MVT tiles</text>
+          <text class="edge-label" x="321" y="228" text-anchor="middle">SQL · bbox</text>
+          <text class="edge-label" x="666" y="68" text-anchor="middle">render</text>
+          <text class="edge-label" x="666" y="228" text-anchor="middle">interact</text>
+
+          <rect class="node node-source" x="20" y="50" width="230" height="180" rx="12" />
+          <text class="tag" x="42" y="84">Source of truth</text>
+          <text class="title" x="42" y="114">PostGIS</text>
+          <text class="sub" x="42" y="150">transactions · blocks</text>
+          <text class="sub" x="42" y="172">matviews · model coefs</text>
+
+          <rect class="node" x="400" y="20" width="210" height="100" rx="12" />
+          <text class="title" x="422" y="62">Martin</text>
+          <text class="sub" x="422" y="90">vector tile server</text>
+
+          <rect class="node" x="400" y="160" width="210" height="100" rx="12" />
+          <text class="title" x="422" y="202">Go API</text>
+          <text class="sub" x="422" y="230">transaction history</text>
+
+          <rect class="node" x="730" y="50" width="210" height="180" rx="12" />
+          <text class="tag" x="752" y="84">Browser · React</text>
+          <text class="title" x="752" y="114">MapLibre GL</text>
+          <text class="sub" x="752" y="150">3 zoom tiers</text>
+          <text class="sub" x="752" y="172">1 price ramp</text>
+        </svg>
+
+        <svg class="arch-v" viewBox="0 0 360 510" aria-hidden="true">
+          <defs>
+            <marker id="arch-arrow-v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path class="arrowhead" d="M0 0 10 5 0 10z" />
+            </marker>
+          </defs>
+          <path class="edge" d="M110 120 C 110 165, 90 165, 90 202" marker-end="url(#arch-arrow-v)" />
+          <path class="edge" d="M250 120 C 250 165, 270 165, 270 202" marker-end="url(#arch-arrow-v)" />
+          <path class="edge" d="M90 300 C 90 345, 110 345, 110 382" marker-end="url(#arch-arrow-v)" />
+          <path class="edge" d="M270 300 C 270 345, 250 345, 250 382" marker-end="url(#arch-arrow-v)" />
+          <text class="edge-label" x="88" y="166" text-anchor="end">MVT tiles</text>
+          <text class="edge-label" x="272" y="166">SQL · bbox</text>
+          <text class="edge-label" x="88" y="346" text-anchor="end">render</text>
+          <text class="edge-label" x="272" y="346">interact</text>
+
+          <rect class="node node-source" x="30" y="10" width="300" height="110" rx="12" />
+          <text class="tag" x="50" y="38">Source of truth</text>
+          <text class="title" x="50" y="64">PostGIS</text>
+          <text class="sub" x="50" y="88">transactions · blocks</text>
+          <text class="sub" x="50" y="106">matviews · model coefs</text>
+
+          <rect class="node" x="10" y="210" width="160" height="90" rx="12" />
+          <text class="title" x="28" y="248">Martin</text>
+          <text class="sub" x="28" y="272">vector tiles</text>
+
+          <rect class="node" x="190" y="210" width="160" height="90" rx="12" />
+          <text class="title" x="208" y="248">Go API</text>
+          <text class="sub" x="208" y="272">txn history</text>
+
+          <rect class="node" x="30" y="390" width="300" height="110" rx="12" />
+          <text class="tag" x="50" y="418">Browser · React</text>
+          <text class="title" x="50" y="444">MapLibre GL</text>
+          <text class="sub" x="50" y="468">3 zoom tiers · 1 price ramp</text>
+        </svg>
+      </figure>
       <div class="prose">
         <p>
           Tiles come straight out of PostGIS as Mapbox Vector Tiles via
@@ -286,13 +344,7 @@
     opacity: 0.55;
     margin-top: 0.25rem;
   }
-  /* Break out of the 36rem article column — at column width the map site
-     falls back to its stacked mobile layout and is unusable. */
   .embed {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(94vw, 78rem);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
@@ -352,24 +404,13 @@
     font-family: var(--font-mono);
     font-size: 0.85em;
   }
-  .diagram {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    line-height: 1.35;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1rem;
-    margin: 1rem 0;
-    overflow-x: auto;
-    opacity: 0.85;
-  }
   .stack-line {
     font-family: var(--font-mono);
     font-size: 0.75rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-  section :global(h2) {
+  section :global(.section-header) {
     margin-bottom: 0.75rem;
   }
 </style>

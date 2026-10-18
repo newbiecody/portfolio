@@ -48,40 +48,63 @@
   ];
 </script>
 
-<div>
+<div class="grid-cards">
   {#each showcaseDetails as { name, desc, stack, previewImageSrc, previewVideoSrc, url, alt, caseStudyHref } (name)}
-    <div class="showcase-item py-container-2 mb-6">
-      <a class="title" href={url} target="_blank" rel="noopener noreferrer">
-        <span>{name}</span>
-        <FontAwesomeIcon icon={faLink} class="link-icon" />
-      </a>
-      <div class="stack">{stack}</div>
-      <div class="opacity-70 text-sm mt-2 leading-relaxed">
-        {desc}
-        {#if caseStudyHref}
-          <a class="case-study" href={caseStudyHref}>Read the case study →</a>
+    <div class="showcase-item">
+      <div class="preview">
+        {#if previewVideoSrc}
+          <video src={previewVideoSrc} autoplay loop muted playsinline aria-label={alt ?? name}></video>
+        {:else if previewImageSrc}
+          <img src={previewImageSrc} alt={alt ?? name} />
+        {:else}
+          <div class="placeholder" aria-hidden="true">{name.split(" — ")[0]}</div>
         {/if}
       </div>
-      {#if previewVideoSrc}
-        <div class="preview mt-3">
-          <video src={previewVideoSrc} autoplay loop muted playsinline aria-label={alt ?? name}></video>
+      <div class="text">
+        <a class="title" href={url} target="_blank" rel="noopener noreferrer">
+          <span>{name}</span>
+          <FontAwesomeIcon icon={faLink} class="link-icon" />
+        </a>
+        <div class="stack">{stack}</div>
+        <div class="opacity-70 text-sm mt-2 leading-relaxed">
+          {desc}
+          {#if caseStudyHref}
+            <a class="case-study" href={caseStudyHref}>Read the case study →</a>
+          {/if}
         </div>
-      {:else if previewImageSrc}
-        <div class="preview mt-3">
-          <img src={previewImageSrc} alt={alt ?? name} />
-        </div>
-      {/if}
+      </div>
     </div>
   {/each}
 </div>
 
 <style>
-  .showcase-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
+  .grid-cards {
+    display: grid;
+    gap: 2.5rem 2rem;
   }
-  .showcase-item:last-child {
-    border-bottom: none;
+  @media (min-width: 900px) {
+    .grid-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .showcase-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--accent);
+    background: var(--accent-soft);
   }
   .title {
     display: inline-flex;
@@ -121,6 +144,7 @@
     text-transform: uppercase;
   }
   .preview {
+    aspect-ratio: 12 / 7;
     overflow: hidden;
     border-radius: 12px;
     border: 1px solid var(--border);
@@ -129,6 +153,9 @@
   .preview video {
     display: block;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
     transition: transform 0.4s ease;
   }
   .preview:hover img,

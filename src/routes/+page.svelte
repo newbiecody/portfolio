@@ -23,7 +23,7 @@
     { id: "contact", label: "Contact" },
   ];
 
-  const siteUrl = "https://newbiecody.github.io/portfolio";
+  const siteUrl = "https://dansonkang.com";
   const title = "Danson Kang — Software Engineer";
   const description =
     "Full-stack engineer in Singapore. Builder of Flatlas (flatlas.sg), an interactive map of every HDB resale transaction since 1990. TypeScript, Go, PostgreSQL, PostGIS.";
@@ -49,23 +49,23 @@
 
 <SideNav items={navItems} />
 
-<div class="justify-center w-full p-4 relative" style="z-index: 2;">
-  <div class="flex justify-end">
+<div class="page" style="z-index: 2;">
+  <div class="theme-toggle">
     {#if $isDarkMode}
       <Button icon={faMoon} buttonAction={toggleColorMode} />
     {:else}
       <Button icon={faSun} buttonAction={toggleColorMode} />
     {/if}
   </div>
-  <div class="flex justify-center">
-    <div class="flex flex-col space-y-16 w-[36rem]">
+  <div>
+    <div class="page-col">
       <div class="relative">
         <PretextHero name="Danson" subtitle="Software Engineer" />
         <SocialsBar />
       </div>
-      <section id="about">
+      <section id="about" class="rail">
         <SectionHeader text="About me" />
-        <div class="opacity-70 space-y-3 leading-relaxed">
+        <div class="rail-body opacity-70 space-y-3 leading-relaxed">
           <p>
             Full-stack engineer based in Singapore with 4+ years of experience
             building scalable backend systems and the frontends that sit on top
@@ -81,24 +81,58 @@
           </p>
         </div>
       </section>
-      <section id="work">
+      <section id="work" class="rail">
         <SectionHeader text="Work experience" />
-        {#each experiences as experience (experience.company)}
-          <div class="mb-6">
-            <ExpCard {...experience} />
-          </div>
-        {/each}
+        <div class="rail-body">
+          {#each experiences as experience (experience.company)}
+            <div class="mb-6">
+              <ExpCard {...experience} />
+            </div>
+          {/each}
+        </div>
       </section>
-      <section id="showcase">
+      <section id="showcase" class="rail">
         <SectionHeader text="Showcase" />
-        <Showcase />
+        <div class="rail-body">
+          <Showcase />
+        </div>
       </section>
-      <section id="contact">
+      <section id="contact" class="rail">
         <SectionHeader text="Get in touch" />
-        <Contact />
+        <div class="rail-body">
+          <Contact />
+        </div>
       </section>
     </div>
   </div>
 </div>
 
 
+
+<style>
+  .theme-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 3;
+  }
+  .rail-body {
+    min-width: 0;
+  }
+  @media (min-width: 900px) {
+    .rail {
+      display: grid;
+      grid-template-columns: 14rem minmax(0, 1fr);
+      gap: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .rail :global(.section-header) {
+      position: sticky;
+      top: 1.5rem;
+      align-self: start;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+</style>

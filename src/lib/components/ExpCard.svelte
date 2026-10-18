@@ -79,6 +79,17 @@
   .body {
     width: 100%;
   }
+  @media (min-width: 900px) {
+    .exp-card {
+      display: grid;
+      grid-template-columns: 11rem minmax(0, 1fr);
+      gap: 2rem;
+    }
+    .dates {
+      margin-bottom: 0;
+      padding-top: 0.2rem;
+    }
+  }
   .note-link {
     color: var(--accent);
     text-decoration: none;

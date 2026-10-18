@@ -2,7 +2,7 @@
   import { base } from "$app/paths";
   import SectionHeader from "$lib/components/SectionHeader.svelte";
 
-  const siteUrl = "https://newbiecody.github.io/portfolio";
+  const siteUrl = "https://dansonkang.com";
   const title = "Two minutes to under a second — a short note";
   const description =
     "How restructuring one CRM query to narrow its data before a join took an API from 1–2 minutes to under a second.";
@@ -25,8 +25,8 @@
   <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
-<div class="flex justify-center w-full p-4">
-  <article class="flex flex-col w-[36rem] max-w-full space-y-12 py-10">
+<div class="page">
+  <article class="page-col">
     <header>
       <a class="backlink" href="{base}/">← danson kang</a>
       <h1>Two minutes to under a second</h1>
@@ -163,17 +163,19 @@
     font-size: 0.85em;
   }
   .diagram {
+    width: fit-content;
+    max-width: 100%;
     font-family: var(--font-mono);
     font-size: 0.68rem;
     line-height: 1.35;
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1rem;
-    margin: 1rem 0;
+    margin: 1rem auto;
     overflow-x: auto;
     opacity: 0.85;
   }
-  section :global(h2) {
+  section :global(.section-header) {
     margin-bottom: 0.75rem;
   }
 </style>

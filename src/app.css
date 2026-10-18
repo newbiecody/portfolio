@@ -32,6 +32,22 @@ body {
   position: relative;
 }
 
+/* Shared page frame for every route. Gutter is in px because the root font
+   is 14px, which would shrink a 1rem gutter below 16px on phones. */
+.page {
+  position: relative;
+  padding: 0 16px;
+}
+.page-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: 78rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 3.5rem 0 5rem;
+}
+
 /* Subtle grain overlay */
 body::before {
   content: "";
@@ -108,4 +124,77 @@ a:hover {
   padding-bottom: 12px;
   padding-left: 16px;
   padding-right: 16px;
+}
+
+/* Architecture diagrams (inline SVG) on the case-study pages. */
+.arch {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.arch svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.arch .arch-v {
+  display: none;
+  max-width: 26rem;
+  margin: 0 auto;
+}
+@media (max-width: 700px) {
+  .arch {
+    padding: 1rem 0.5rem;
+  }
+  .arch .arch-h {
+    display: none;
+  }
+  .arch .arch-v {
+    display: block;
+  }
+}
+.arch .node {
+  fill: var(--card-hover);
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+.arch .node-source {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+}
+.arch .edge {
+  fill: none;
+  stroke: var(--fg);
+  stroke-opacity: 0.45;
+  stroke-width: 1.5;
+}
+.arch .arrowhead {
+  fill: var(--fg);
+  fill-opacity: 0.45;
+}
+.arch text {
+  fill: var(--fg);
+}
+.arch .title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+}
+.arch .sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  fill-opacity: 0.7;
+}
+.arch .tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--accent);
+}
+.arch .edge-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill-opacity: 0.6;
 }
