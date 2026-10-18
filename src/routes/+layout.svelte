@@ -1,6 +1,22 @@
 <script>
   import "../app.css";
+  import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+  import Button from "$lib/components/buttons/Button.svelte";
+  import { isDarkMode } from "../state.svelte";
+
+  function toggleColorMode() {
+    isDarkMode.set(!$isDarkMode);
+    window.document.body.classList.toggle("dark-mode");
+  }
 </script>
+
+<div class="theme-toggle">
+  {#if $isDarkMode}
+    <Button icon={faMoon} buttonAction={toggleColorMode} />
+  {:else}
+    <Button icon={faSun} buttonAction={toggleColorMode} />
+  {/if}
+</div>
 
 <slot />
 
@@ -14,5 +30,11 @@
     transition:
       background-color 0.3s,
       color 0.3s;
+  }
+  .theme-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
   }
 </style>

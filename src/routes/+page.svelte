@@ -1,7 +1,4 @@
 <script lang="ts">
-  import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
-  import Button from "$lib/components/buttons/Button.svelte";
-  import { isDarkMode } from "../state.svelte";
   import ExpCard from "$lib/components/ExpCard.svelte";
   import { experiences } from "../constants";
   import SocialsBar from "$lib/components/SocialsBar.svelte";
@@ -10,11 +7,6 @@
   import SectionHeader from "$lib/components/SectionHeader.svelte";
   import SideNav from "$lib/components/SideNav.svelte";
   import Contact from "$lib/components/Contact.svelte";
-
-  function toggleColorMode() {
-    isDarkMode.set(!$isDarkMode);
-    window.document.body.classList.toggle("dark-mode");
-  }
 
   const navItems = [
     { id: "about", label: "About" },
@@ -50,13 +42,6 @@
 <SideNav items={navItems} />
 
 <div class="page" style="z-index: 2;">
-  <div class="theme-toggle">
-    {#if $isDarkMode}
-      <Button icon={faMoon} buttonAction={toggleColorMode} />
-    {:else}
-      <Button icon={faSun} buttonAction={toggleColorMode} />
-    {/if}
-  </div>
   <div>
     <div class="page-col">
       <div class="relative">
@@ -110,12 +95,6 @@
 
 
 <style>
-  .theme-toggle {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    z-index: 3;
-  }
   .rail-body {
     min-width: 0;
   }
