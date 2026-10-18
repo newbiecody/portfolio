@@ -17,7 +17,10 @@ export const experiences: TExperiences = [
     location: "Singapore",
     startDate: "Mar 2026",
     roleDesc: "Building features across Next.js and Node.js.",
-    skills: ["Next.js", "Node.js"],
+    achievements: [
+      "Building internal AI tooling on Amazon Bedrock, including custom MCP servers that give coding agents access to the codebase.",
+    ],
+    skills: ["Next.js", "Node.js", "Amazon Bedrock"],
   },
   {
     title: "Full-Stack Engineer",
