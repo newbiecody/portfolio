@@ -7,13 +7,30 @@
   import SectionHeader from "$lib/components/SectionHeader.svelte";
   import SideNav from "$lib/components/SideNav.svelte";
   import Contact from "$lib/components/Contact.svelte";
+  import { base } from "$app/paths";
 
   const navItems = [
     { id: "about", label: "About" },
     { id: "work", label: "Work" },
     { id: "ai", label: "AI workflow" },
     { id: "showcase", label: "Showcase" },
+    { id: "notes", label: "Notes" },
     { id: "contact", label: "Contact" },
+  ];
+
+  const notes = [
+    {
+      href: "/viewport-limit",
+      title: "The LIMIT that hid part of the map",
+      blurb:
+        "A row cap ordered by date silently dropped whole blocks from Flatlas. Ranking each block's rows first kept all of them.",
+    },
+    {
+      href: "/crm-query",
+      title: "Two minutes to under a second",
+      blurb:
+        "Narrowing a CRM query before its join took an API from 1–2 minutes to under a second.",
+    },
   ];
 
   const siteUrl = "https://dansonkang.com";
@@ -131,6 +148,19 @@
           <Showcase />
         </div>
       </section>
+      <section id="notes" class="rail">
+        <SectionHeader text="Notes" />
+        <ul class="rail-body notes">
+          {#each notes as n (n.href)}
+            <li>
+              <a href="{base}{n.href}">
+                <span class="note-title">{n.title} →</span>
+                <span class="note-blurb">{n.blurb}</span>
+              </a>
+            </li>
+          {/each}
+        </ul>
+      </section>
       <section id="contact" class="rail">
         <SectionHeader text="Get in touch" />
         <div class="rail-body">
@@ -155,6 +185,34 @@
   }
   .ai-list strong {
     font-weight: 600;
+  }
+  .notes {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .notes a {
+    display: grid;
+    gap: 0.25rem;
+    padding: 0.75rem;
+    margin: 0 -0.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .notes a:hover {
+    background: var(--card-hover);
+  }
+  .note-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+  .notes a:hover .note-title {
+    color: var(--accent);
+  }
+  .note-blurb {
+    opacity: 0.7;
+    line-height: 1.6;
   }
   @media (min-width: 900px) {
     .rail {

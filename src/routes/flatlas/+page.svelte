@@ -186,9 +186,10 @@
           <code>ST_AsMVT</code>, served by Martin. Anything you click — a
           block's transaction history, the price explanation — hits a small Go
           API that runs viewport-bounded, per-block-windowed queries. One
-          gotcha that shaped the API: a global <code>LIMIT</code> on a bounding-box
-          query silently drops entire blocks at dense zoom levels, so the cap is
-          applied per block with a window function instead.
+          gotcha that shaped the API: a row cap ordered by date silently
+          dropped entire blocks at dense zoom levels, so each block's rows are
+          ranked first and the cap trims by rank
+          (<a href="{base}/viewport-limit">short note</a>).
         </p>
         <p>
           The whole stack — database, tile server, API, ETL — runs in Docker on

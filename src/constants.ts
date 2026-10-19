@@ -19,6 +19,7 @@ export const experiences: TExperiences = [
     roleDesc: "Building features across Next.js and Node.js.",
     achievements: [
       "Building internal AI tooling on Amazon Bedrock, including custom MCP servers that give coding agents access to the codebase.",
+      "Developing with AI through test-driven development: tests written from the spec first, with AI-assisted code review.",
     ],
     skills: ["Next.js", "Node.js", "Amazon Bedrock"],
   },
